@@ -1,0 +1,21 @@
+CÓMO AGREGAR TUS OBRAS AL PORTAFOLIO
+======================================
+
+1. Copia tus fotos de tatuajes a esta carpeta (img/portafolio/)
+2. Nombra cada foto así, en orden:
+   obra1.jpg
+   obra2.jpg
+   obra3.jpg
+   ... (hasta obra30)
+
+   También acepta .png y .jpeg (ej. obra1.png, obra2.jpeg)
+
+3. Recarga la página web (F5) y las obras aparecen solas en la galería.
+
+NOTA:
+- Se muestran en el orden del número (obra1 primero).
+- Las etiquetas (Realismo B&G, Retrato, Cover-up...) se asignan
+  automáticamente en orden. Para cambiar una etiqueta, edita la lista
+  ETIQUETAS en index.html (búscala junto al código del portafolio).
+- Si una foto no aparece, revisa que el nombre sea exacto (obra1.jpg,
+  sin mayúsculas ni espacios).

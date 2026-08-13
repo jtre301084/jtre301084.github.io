@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jorge Trejos — Tattoo Artist | Realismo Black & Grey</title>
+<meta name="description" content="Realismo black & grey de alta gama. 23 años de precisión. Te llevas una obra original, solo existe una en el mundo.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --negro: #0A0A0C;
+  --gris-pizarra: #55555C;
+  --blanco: #FAFAF7;
+  --morado: #5A1860;
+  --plata: #C6C6CD;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--negro);
+  color: var(--blanco);
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+h1, h2, h3, .logo-texto { font-family: 'Manrope', sans-serif; }
+a { color: var(--plata); text-decoration: none; }
+
+/* HEADER */
+header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(10,10,12,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(198,198,205,0.15);
+  padding: 0.8rem 5%;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.brand { display: flex; align-items: center; gap: 1rem; }
+.brand img { height: 72px; width: auto; }
+.brand .nombre { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.05em; }
+.brand .rol { font-size: 0.7rem; color: var(--plata); letter-spacing: 0.15em; text-transform: uppercase; }
+nav a { margin-left: 1.5rem; font-size: 0.85rem; letter-spacing: 0.05em; }
+nav a:hover { color: var(--morado); }
+
+/* HERO */
+.hero {
+  min-height: 88vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 4rem 5%;
+  background:
+    radial-gradient(ellipse at top, rgba(90,24,96,0.25), transparent 60%),
+    var(--negro);
+}
+.hero h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 800; letter-spacing: 0.02em; }
+.hero .slogan {
+  margin-top: 1.2rem; font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--plata); font-weight: 300; letter-spacing: 0.08em;
+}
+.hero .slogan strong { color: var(--blanco); font-weight: 600; }
+.hero .caja-logo { margin-bottom: 1.8rem; }
+.hero .caja-logo img { height: 210px; width: auto; }
+.btn {
+  display: inline-block; margin-top: 2.2rem;
+  background: var(--morado); color: var(--blanco);
+  padding: 0.9rem 2.4rem; border-radius: 2px;
+  font-family: 'Manrope', sans-serif; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.85rem;
+  transition: 0.2s;
+}
+.btn:hover { background: #7a2a82; color: var(--blanco); }
+
+/* SECCIONES */
+section { padding: 4.5rem 6%; max-width: 1200px; margin: 0 auto; }
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800;
+  margin-bottom: 1.8rem; text-align: center;
+}
+h2 .sub { display:block; font-size: 0.95rem; font-weight: 600; color: var(--plata); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 0.4rem; }
+
+/* PORTAFOLIO */
+.portafolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+.obra {
+  position: relative; aspect-ratio: 4/5;
+  background: rgba(85,85,92,0.15);
+  border: 1px solid rgba(198,198,205,0.18);
+  border-radius: 3px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.obra img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+.obra:hover img { transform: scale(1.04); }
+.obra .placeholder { color: var(--gris-pizarra); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300; }
+.obra .etiqueta {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,12,0.85); padding: 0.6rem 1rem;
+  font-size: 0.75rem; letter-spacing: 0.1em; color: var(--plata);
+}
+
+/* PROPUESTA DE VALOR */
+.propuesta { text-align: center; max-width: 800px; }
+.propuesta p { color: var(--plata); font-size: 1.15rem; font-weight: 300; }
+.propuesta .fuerte { color: var(--blanco); font-family: 'Manrope'; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; margin: 1rem 0; }
+
+/* FORTALEZAS */
+.fortalezas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+.ficha {
+  border: 1px solid rgba(198,198,205,0.18);
+  background: rgba(85,85,92,0.08);
+  padding: 1.6rem 1.4rem; border-radius: 3px;
+  transition: 0.2s;
+}
+.ficha:hover { border-color: var(--morado); transform: translateY(-3px); }
+.ficha h3 { font-size: 1rem; font-weight: 700; color: var(--blanco); margin-bottom: 0.4rem; }
+.ficha p { font-size: 0.85rem; color: var(--plata); font-weight: 300; }
+
+/* ACERCA DE */
+.acerca { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center; }
+.acerca img {
+  width: 100%; max-height: 560px; object-fit: cover;
+  border: 1px solid rgba(198,198,205,0.2); border-radius: 3px;
+}
+.acerca h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+.acerca p { color: var(--plata); font-weight: 300; margin-bottom: 1rem; }
+.acerca .destacado { color: var(--blanco); font-weight: 600; }
+
+/* CONTACTO / CAPTURA */
+.contacto { background: rgba(85,85,92,0.06); border-top: 1px solid rgba(198,198,205,0.12); }
+.form-caja { max-width: 480px; margin: 0 auto; }
+.form-caja p { text-align: center; color: var(--plata); font-size: 0.9rem; font-weight: 300; margin-bottom: 1.8rem; }
+label { font-family: 'Manrope'; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plata); }
+input {
+  width: 100%; margin: 0.4rem 0 1.4rem; padding: 0.85rem 1rem;
+  background: var(--negro); border: 1px solid rgba(198,198,205,0.3);
+  color: var(--blanco); border-radius: 3px; font-family: 'Poppins';
+}
+input:focus { outline: none; border-color: var(--morado); }
+.boton-form {
+  width: 100%; border: none; cursor: pointer;
+  background: var(--morado); color: var(--blanco);
+  padding: 1rem; border-radius: 3px;
+  font-family: 'Manrope'; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.boton-form:hover { background: #7a2a82; }
+.mensaje-ok { display: none; text-align: center; color: #9be29b; padding: 1rem; border: 1px solid #9be29b; border-radius: 3px; margin-top: 1rem; }
+.mensaje-error { display: none; text-align: center; color: #e29b9b; padding: 1rem; border: 1px solid #e29b9b; border-radius: 3px; margin-top: 1rem; }
+
+/* FOOTER */
+footer { border-top: 1px solid rgba(198,198,205,0.12); padding: 2.5rem 5%; text-align: center; }
+footer p { color: var(--gris-pizarra); font-size: 0.8rem; font-weight: 300; margin: 0.3rem 0; }
+footer a { color: var(--plata); }
+
+@media (max-width: 800px) {
+  nav { display: none; }
+  .acerca { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="img/logo.png" alt="Logo Jorge Trejos">
+    <div>
+      <div class="nombre">JORGE TREJOS</div>
+      <div class="rol">Tattoo Artist</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#fortalezas">Fortalezas</a>
+    <a href="#acerca">Sobre mí</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="caja-logo"><img src="img/logo.png" alt="Jorge Trejos"></div>
+    <h1>REALISMO BLACK &amp; GREY<br>DE ALTA GAMA</h1>
+    <p class="slogan">23 años de precisión · te llevas una <strong>obra original</strong> ·<br>solo existe <strong>una en el mundo</strong></p>
+    <a href="#contacto" class="btn">Agenda tu cita</a>
+  </div>
+</section>
+
+<section class="propuesta">
+  <h2><span class="sub">Propuesta de valor</span>Diseño único · Una sola edición</h2>
+  <p class="fuerte">No te tatúas: te llevas una obra pensada solo para tu piel. Personalizada a mano o digital, una sola vez, para siempre.</p>
+  <p>Especialista en negro y gris, correcciones, cover-up y maquillaje permanente. Arte con lujo y detalle.</p>
+</section>
+
+<section id="fortalezas">
+  <h2><span class="sub">Mi arte</span>Fortalezas</h2>
+  <div class="fortalezas">
+    <div class="ficha"><h3>Maestro del negro y gris</h3><p>23 años de pulso y precisión en el realismo que es mi sello.</p></div>
+    <div class="ficha"><h3>Freehand</h3><p>Dibujo directo sobre tu piel, adaptado a tu anatomía y tu historia.</p></div>
+    <div class="ficha"><h3>Correcciones y cover-up</h3><p>Convierto tatuajes malos o viejos en obras finas y bien pensadas.</p></div>
+    <div class="ficha"><h3>Maquillaje permanente</h3><p>Cejas, ojos y labios con precisión y estética natural.</p></div>
+    <div class="ficha"><h3>Diseño personalizado</h3><p>A mano o digital, creado exclusivamente para ti. Nunca repetido.</p></div>
+    <div class="ficha"><h3>Color de fantasía</h3><p>Diseños delicados de color para ellas, con acabado de lujo.</p></div>
+  </div>
+</section>
+
+<section id="portafolio">
+  <h2><span class="sub">Trabajo</span>Portafolio</h2>
+  <div class="portafolio-grid" id="gridPortafolio"></div>
+  <p style="text-align:center; color:#55555C; font-size:0.8rem; margin-top:1.5rem;">
+    Consejo: guarda tus fotos en la carpeta <code>img/portafolio/</code> con nombres obra1.jpg, obra2.jpg... y aparecen aquí solas.
+  </p>
+</section>
+
+<section id="acerca">
+  <h2><span class="sub">Conoce al artista</span>Sobre mí</h2>
+  <div class="acerca">
+    <img src="img/jorge.jpg" alt="Jorge Trejos, tattoo artist">
+    <div>
+      <h3>Jorge Trejos</h3>
+      <p class="destacado">23 años de precisión. Te llevas una obra original: solo existe una en el mundo.</p>
+      <p>Mi trabajo es el realismo black &amp; grey, con un enfoque obsesivo en el lujo y el detalle. Cada pieza es un diseño único, una sola edición, pensado para quien lo lleva.</p>
+      <p>Soy especialista en correcciones y cover-up, perfecto también para tu primera vez: te acompaño con paciencia y confianza.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <h2><span class="sub">Empieza tu obra</span>Agenda tu cita</h2>
+  <div class="form-caja">
+    <p>Déjame tu nombre y correo. Te respondo personalmente con una cotización exclusiva.</p>
+    <form id="formCita">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+      <label for="correo">Correo electrónico</label>
+      <input type="email" id="correo" name="correo" placeholder="tucorreo@email.com" required>
+      <button type="submit" class="boton-form">Quiero mi obra única</button>
+    </form>
+    <div class="mensaje-ok" id="mensajeOk">Gracias. Tu solicitud fue recibida, te escribiré muy pronto.</div>
+<div class="mensaje-error" id="mensajeError">Hubo un problema al enviar. Intenta de nuevo o escríbeme por WhatsApp.</div>
+  </div>
+</section>
+
+<footer>
+  <p>Jorge Trejos — Tattoo Artist · Realismo Black &amp; Grey</p>
+  <p>WhatsApp: <a href="https://wa.me/50670260263" target="_blank">+506 7026 0263</a> · Correo: <a href="mailto:jtre301084@gmail.com">jtre301084@gmail.com</a></p>
+  <p>© 2026 Jorge Trejos · Diseño único, una sola edición.</p>
+</footer>
+
+<script>
+/* ============================================================
+   FORMULARIO — ENVÍO A TU CORREO (Formspree)
+   1. Crea una cuenta gratis en https://formspree.io
+   2. Crea un formulario nuevo ("New Form") y copia su ID
+      (algo como: https://formspree.io/f/abcdefgh)
+   3. Pega ese enlace en FORMA_SPREE_URL abajo
+   4. En Formspree, ve al formulario > "Forms" > activa que los
+      envíos te lleguen a tu correo jtre301084@gmail.com
+   Mientras tanto, los datos también se guardan en localStorage.
+   ============================================================ */
+var FORMA_SPREE_URL = 'https://formspree.io/f/mvkprwyr';
+
+document.getElementById('formCita').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var boton = this.querySelector('.boton-form');
+  var nombre = document.getElementById('nombre').value.trim();
+  var correo = document.getElementById('correo').value.trim();
+
+  var datos = { nombre: nombre, correo: correo, fecha: new Date().toISOString() };
+  var lista = JSON.parse(localStorage.getItem('clientes') || '[]');
+  lista.push(datos);
+  localStorage.setItem('clientes', JSON.stringify(lista));
+
+  boton.disabled = true;
+  boton.textContent = 'Enviando...';
+
+  var enviar = fetch(FORMA_SPREE_URL, {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(datos)
+  });
+
+  enviar.then(function(resp) {
+    if (resp.ok) {
+      document.getElementById('mensajeOk').style.display = 'block';
+      document.getElementById('mensajeError').style.display = 'none';
+      document.getElementById('formCita').reset();
+    } else {
+      throw new Error('fallo');
+    }
+  }).catch(function() {
+    document.getElementById('mensajeError').style.display = 'block';
+    document.getElementById('mensajeOk').style.display = 'none';
+  }).finally(function() {
+    boton.disabled = false;
+    boton.textContent = 'Quiero mi obra única';
+  });
+});
+
+/* PORTAFOLIO AUTOMÁTICO:
+   Pega tus fotos en img/portafolio/ con nombres obra1.jpg, obra2.jpg, ...
+   (también acepta .png y .jpeg). Aparecerán solas en la galería. */
+(function() {
+  var contenedor = document.getElementById('gridPortafolio');
+  var MAX = 30;
+  for (var i = 1; i <= MAX; i++) {
+    (function(n) {
+      var img = new Image();
+      var ext = ['jpg','png','jpeg'];
+      var probadas = 0;
+      function probar() {
+        var src = 'img/portafolio/obra' + n + '.' + ext[probadas];
+        img.onload = function() {
+          var div = document.createElement('div');
+          div.className = 'obra';
+          div.innerHTML = '<img src="' + src + '" alt="Obra ' + n + '">';
+          contenedor.appendChild(div);
+        };
+        img.onerror = function() {
+          probadas++;
+          if (probadas < ext.length) { probar(); }
+        };
+        img.src = src;
+      }
+      probar();
+    })(i);
+  }
+})();
+</script>
+
+</body>
+</html>
