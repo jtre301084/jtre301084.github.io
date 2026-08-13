@@ -90,7 +90,7 @@ h2 .sub { display:block; font-size: 0.95rem; font-weight: 600; color: var(--plat
   border-radius: 3px; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
-.obra img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+.obra img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; cursor: zoom-in; }
 .obra:hover img { transform: scale(1.04); }
 .obra .placeholder { color: var(--gris-pizarra); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 300; }
 .obra .etiqueta {
@@ -98,6 +98,26 @@ h2 .sub { display:block; font-size: 0.95rem; font-weight: 600; color: var(--plat
   background: rgba(10,10,12,0.85); padding: 0.6rem 1rem;
   font-size: 0.75rem; letter-spacing: 0.1em; color: var(--plata);
 }
+
+/* LIGHTBOX (ventana flotante) */
+.lightbox {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(10,10,12,0.95);
+  display: none; align-items: center; justify-content: center;
+  cursor: zoom-out; padding: 2rem;
+}
+.lightbox.abierto { display: flex; }
+.lightbox img {
+  max-width: 92vw; max-height: 88vh;
+  border: 1px solid rgba(198,198,205,0.25); border-radius: 3px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.8);
+}
+.lightbox .cerrar {
+  position: absolute; top: 1rem; right: 1.5rem;
+  font-size: 2.6rem; line-height: 1; color: var(--blanco);
+  cursor: pointer; transition: color 0.2s;
+}
+.lightbox .cerrar:hover { color: var(--morado); }
 
 /* PROPUESTA DE VALOR */
 .propuesta { text-align: center; max-width: 800px; }
@@ -283,6 +303,11 @@ footer a { color: var(--plata); }
   <p>© 2026 Jorge Trejos · Diseño único, una sola edición.</p>
 </footer>
 
+<div class="lightbox" id="lightbox">
+  <span class="cerrar" id="lightboxCerrar">&times;</span>
+  <img id="lightboxImg" src="" alt="Obra">
+</div>
+
 <script>
 /* ============================================================
    FORMULARIO — ENVÍO A TU CORREO (Formspree)
@@ -362,6 +387,23 @@ document.getElementById('formCita').addEventListener('submit', function(e) {
       probar();
     })(i);
   }
+
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  contenedor.addEventListener('click', function(e) {
+    var img = e.target.closest('.obra img');
+    if (!img) return;
+    lightboxImg.src = img.getAttribute('src');
+    lightbox.classList.add('abierto');
+  });
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox || e.target.id === 'lightboxCerrar') {
+      lightbox.classList.remove('abierto');
+    }
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') lightbox.classList.remove('abierto');
+  });
 })();
 </script>
 
