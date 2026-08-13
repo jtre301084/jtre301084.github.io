@@ -154,9 +154,45 @@ footer a { color: var(--plata); }
   nav { display: none; }
   .acerca { grid-template-columns: 1fr; }
 }
+
+/* PARTÍCULAS ASCENDENTES NARANJAS */
+.particulas {
+  position: fixed; inset: 0; overflow: hidden;
+  pointer-events: none; z-index: 1;
+}
+.particulas span {
+  position: absolute; bottom: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,160,60,0.95), rgba(255,120,20,0));
+  opacity: 0;
+  animation: subir linear infinite;
+}
+@keyframes subir {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  12%  { opacity: var(--o); }
+  85%  { opacity: var(--o); }
+  100% { transform: translateY(-110vh) translateX(var(--v)); opacity: 0; }
+}
 </style>
 </head>
 <body>
+
+<div class="particulas">
+  <span style="--x:5%;  --o:.5; --v:-20px;  width:7px;  height:7px;  animation-duration:13s; animation-delay:0s;"></span>
+  <span style="--x:12%; --o:.35; --v:18px;   width:5px;  height:5px;  animation-duration:17s; animation-delay:2s;"></span>
+  <span style="--x:20%; --o:.55; --v:-15px;  width:9px;  height:9px;  animation-duration:11s; animation-delay:4s;"></span>
+  <span style="--x:27%; --o:.4;  --v:24px;   width:6px;  height:6px;  animation-duration:15s; animation-delay:1s;"></span>
+  <span style="--x:34%; --o:.6;  --v:-28px;  width:10px; height:10px; animation-duration:19s; animation-delay:6s;"></span>
+  <span style="--x:41%; --o:.35; --v:16px;   width:5px;  height:5px;  animation-duration:12s; animation-delay:3s;"></span>
+  <span style="--x:48%; --o:.5;  --v:-12px;  width:8px;  height:8px;  animation-duration:16s; animation-delay:7s;"></span>
+  <span style="--x:55%; --o:.45; --v:20px;   width:6px;  height:6px;  animation-duration:14s; animation-delay:0.5s;"></span>
+  <span style="--x:62%; --o:.6;  --v:-22px;  width:11px; height:11px; animation-duration:20s; animation-delay:5s;"></span>
+  <span style="--x:69%; --o:.35; --v:14px;   width:5px;  height:5px;  animation-duration:13s; animation-delay:2.5s;"></span>
+  <span style="--x:76%; --o:.55; --v:-18px;  width:8px;  height:8px;  animation-duration:17s; animation-delay:8s;"></span>
+  <span style="--x:83%; --o:.4;  --v:22px;   width:7px;  height:7px;  animation-duration:15s; animation-delay:1.5s;"></span>
+  <span style="--x:90%; --o:.5;  --v:-26px;  width:9px;  height:9px;  animation-duration:18s; animation-delay:4.5s;"></span>
+  <span style="--x:96%; --o:.35; --v:12px;   width:5px;  height:5px;  animation-duration:12s; animation-delay:6.5s;"></span>
+</div>
 
 <header>
   <div class="brand">
@@ -212,7 +248,7 @@ footer a { color: var(--plata); }
 <section id="acerca">
   <h2><span class="sub">Conoce al artista</span>Sobre mí</h2>
   <div class="acerca">
-    <img src="img/jorge.jpg" alt="Jorge Trejos, tattoo artist">
+    <img src="img/jorge.png?v=2" alt="Jorge Trejos, tattoo artist">
     <div>
       <h3>Jorge Trejos</h3>
       <p class="destacado">23 años de precisión. Te llevas una obra original: solo existe una en el mundo.</p>
