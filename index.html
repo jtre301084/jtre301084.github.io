@@ -131,12 +131,13 @@ h2 .sub { display:block; font-size: 0.95rem; font-weight: 600; color: var(--plat
 .form-caja { max-width: 480px; margin: 0 auto; }
 .form-caja p { text-align: center; color: var(--plata); font-size: 0.9rem; font-weight: 300; margin-bottom: 1.8rem; }
 label { font-family: 'Manrope'; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plata); }
-input {
+input, textarea {
   width: 100%; margin: 0.4rem 0 1.4rem; padding: 0.85rem 1rem;
   background: var(--negro); border: 1px solid rgba(198,198,205,0.3);
   color: var(--blanco); border-radius: 3px; font-family: 'Poppins';
+  resize: vertical;
 }
-input:focus { outline: none; border-color: var(--morado); }
+input:focus, textarea:focus { outline: none; border-color: var(--morado); }
 .boton-form {
   width: 100%; border: none; cursor: pointer;
   background: var(--morado); color: var(--blanco);
@@ -261,12 +262,14 @@ footer a { color: var(--plata); }
 <section class="contacto" id="contacto">
   <h2><span class="sub">Empieza tu obra</span>Agenda tu cita</h2>
   <div class="form-caja">
-    <p>Déjame tu nombre y correo. Te respondo personalmente con una cotización exclusiva.</p>
+    <p>Déjame tu nombre, tu correo y cuéntame qué te gustaría tatuarte. Te respondo personalmente con una cotización exclusiva.</p>
     <form id="formCita">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
       <label for="correo">Correo electrónico</label>
       <input type="email" id="correo" name="correo" placeholder="tucorreo@email.com" required>
+      <label for="mensaje">¿Qué te gustaría tatuarte?</label>
+      <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu idea: tamaño, zona del cuerpo, estilo, referencia, fecha... lo que tengas en mente." required></textarea>
       <button type="submit" class="boton-form">Quiero mi obra única</button>
     </form>
     <div class="mensaje-ok" id="mensajeOk">Gracias. Tu solicitud fue recibida, te escribiré muy pronto.</div>
@@ -298,8 +301,9 @@ document.getElementById('formCita').addEventListener('submit', function(e) {
   var boton = this.querySelector('.boton-form');
   var nombre = document.getElementById('nombre').value.trim();
   var correo = document.getElementById('correo').value.trim();
+  var mensaje = document.getElementById('mensaje').value.trim();
 
-  var datos = { nombre: nombre, correo: correo, fecha: new Date().toISOString() };
+  var datos = { nombre: nombre, correo: correo, mensaje: mensaje, fecha: new Date().toISOString() };
   var lista = JSON.parse(localStorage.getItem('clientes') || '[]');
   lista.push(datos);
   localStorage.setItem('clientes', JSON.stringify(lista));
