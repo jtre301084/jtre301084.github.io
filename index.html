@@ -157,6 +157,19 @@ input, textarea {
   color: var(--blanco); border-radius: 3px; font-family: 'Poppins';
   resize: vertical;
 }
+input[type="file"] {
+  padding: 0.7rem 1rem; cursor: pointer;
+  color: var(--plata);
+}
+input[type="file"]::file-selector-button {
+  background: var(--morado); color: var(--blanco);
+  border: none; padding: 0.5rem 1.2rem; border-radius: 3px; cursor: pointer;
+  font-family: 'Manrope'; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.75rem;
+  margin-right: 1rem; transition: 0.2s;
+}
+input[type="file"]::file-selector-button:hover { background: #7a2a82; }
+.foto-preview { margin-top: 0.5rem; margin-bottom: 1.4rem; }
+.foto-preview img { max-width: 100%; max-height: 200px; border-radius: 3px; border: 1px solid rgba(198,198,205,0.3); display: none; }
 input:focus, textarea:focus { outline: none; border-color: var(--morado); }
 .boton-form {
   width: 100%; border: none; cursor: pointer;
@@ -288,14 +301,17 @@ footer a { color: var(--plata); }
 <section class="contacto" id="contacto">
   <h2><span class="sub">Empieza tu obra</span>Agenda tu cita</h2>
   <div class="form-caja">
-    <p>Déjame tu nombre, tu correo y cuéntame qué te gustaría tatuarte. Te respondo personalmente con una cotización exclusiva.</p>
-    <form id="formCita">
+    <p>Déjame tu nombre, tu correo y cuéntame qué te gustaría tatuarte. Adjunta una foto clara de la zona. Te respondo personalmente con una cotización exclusiva.</p>
+    <form id="formCita" enctype="multipart/form-data">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
       <label for="correo">Correo electrónico</label>
       <input type="email" id="correo" name="correo" placeholder="tucorreo@email.com" required>
       <label for="mensaje">¿Qué te gustaría tatuarte?</label>
       <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu idea: tamaño, zona del cuerpo, estilo, referencia, fecha... lo que tengas en mente." required></textarea>
+      <label for="foto">Foto de la zona a tatuar (obligatorio)</label>
+      <input type="file" id="foto" name="foto" accept=".jpg,.jpeg,.png" required>
+      <div class="foto-preview"><img id="fotoPreview" src="" alt="Vista previa"></div>
       <button type="submit" class="boton-form">Quiero mi obra única</button>
     </form>
     <div class="mensaje-ok" id="mensajeOk">Gracias. Tu solicitud fue recibida, te escribiré muy pronto.</div>
@@ -327,12 +343,28 @@ footer a { color: var(--plata); }
    ============================================================ */
 var FORMA_SPREE_URL = 'https://formspree.io/f/mvkprwyr';
 
+document.getElementById('foto').addEventListener('change', function(e) {
+  var preview = document.getElementById('fotoPreview');
+  var archivo = e.target.files[0];
+  if (archivo) {
+    var lector = new FileReader();
+    lector.onload = function(ev) {
+      preview.src = ev.target.result;
+      preview.style.display = 'block';
+    };
+    lector.readAsDataURL(archivo);
+  } else {
+    preview.style.display = 'none';
+  }
+});
+
 document.getElementById('formCita').addEventListener('submit', function(e) {
   e.preventDefault();
   var boton = this.querySelector('.boton-form');
   var nombre = document.getElementById('nombre').value.trim();
   var correo = document.getElementById('correo').value.trim();
   var mensaje = document.getElementById('mensaje').value.trim();
+  var foto = document.getElementById('foto').files[0];
 
   var datos = { nombre: nombre, correo: correo, mensaje: mensaje, fecha: new Date().toISOString() };
   var lista = JSON.parse(localStorage.getItem('clientes') || '[]');
@@ -342,10 +374,17 @@ document.getElementById('formCita').addEventListener('submit', function(e) {
   boton.disabled = true;
   boton.textContent = 'Enviando...';
 
+  var formData = new FormData();
+  formData.append('nombre', nombre);
+  formData.append('correo', correo);
+  formData.append('mensaje', mensaje);
+  formData.append('fecha', new Date().toISOString());
+  if (foto) { formData.append('foto', foto); }
+
   var enviar = fetch(FORMA_SPREE_URL, {
     method: 'POST',
-    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify(datos)
+    headers: { 'Accept': 'application/json' },
+    body: formData
   });
 
   enviar.then(function(resp) {
@@ -353,6 +392,7 @@ document.getElementById('formCita').addEventListener('submit', function(e) {
       document.getElementById('mensajeOk').style.display = 'block';
       document.getElementById('mensajeError').style.display = 'none';
       document.getElementById('formCita').reset();
+      document.getElementById('fotoPreview').style.display = 'none';
     } else {
       throw new Error('fallo');
     }
