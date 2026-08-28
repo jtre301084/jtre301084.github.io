@@ -19,6 +19,7 @@
   --morado: #5A1860;
   --verde: #4CAF50;
   --naranja: #FF8C00;
+  --rojo: #FF3333;
   --plata: #C6C6CD;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -151,7 +152,7 @@ h2 .sub { display:block; font-size: 0.95rem; font-weight: 600; color: var(--plat
 /* CONTACTO / CAPTURA */
 .contacto { background: rgba(85,85,92,0.06); border-top: 1px solid rgba(198,198,205,0.12); }
 .form-caja { max-width: 480px; margin: 0 auto; }
-.form-caja p { text-align: center; color: var(--plata); font-size: 0.9rem; font-weight: 300; margin-bottom: 1.8rem; }
+.form-caja p { text-align: center; color: var(--rojo); font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600; margin-bottom: 1.8rem; }
 label { font-family: 'Manrope'; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plata); }
 input, textarea {
   width: 100%; margin: 0.4rem 0 1.4rem; padding: 0.85rem 1rem;
@@ -303,7 +304,7 @@ footer a { color: var(--plata); }
 <section class="contacto" id="contacto">
   <h2><span class="sub">Empieza tu obra</span>Agenda tu cita</h2>
   <div class="form-caja">
-    <p>Déjame tu nombre, tu correo y cuéntame qué te gustaría tatuarte. Adjunta una foto clara de la zona. Te respondo personalmente con una cotización exclusiva.</p>
+    <p>Para darte la cotización exacta necesito que me envíes dos cosas:<br><strong>1.</strong> Una foto clara y bien iluminada de la zona donde quieres el tatuaje.<br><strong>2.</strong> Una imagen de referencia con la idea que te gusta — puedes buscarla en Pinterest, guardarla y adjuntarla aquí.<br><br>Con eso estudio tu proyecto y te respondo con la cotización y el diseño pensado para ti.</p>
     <form id="formCita" enctype="multipart/form-data">
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
